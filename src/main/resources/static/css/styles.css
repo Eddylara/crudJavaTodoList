@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+
+}
+
+.reader, .reader th, .reader td{
+    border: 1px black solid;
+    border-collapse: collapse;
+}
+
+.reader th, .reader td{
+    padding: 4px 10px;
+}
+
+.reader th{
+    padding: 7px 10px;
+}
+
+.table_body tr:nth-child(odd){
+    background-color: white;
+}
+
+.table_body tr:nth-child(even){
+    background-color: white;
+}

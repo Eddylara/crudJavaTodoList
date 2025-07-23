@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -112,6 +113,20 @@ public class ContactoC {
         return new ResponseEntity(con.toDTO(), HttpStatus.OK);
         } catch (Exception e) {
             Map<String,String> error = new HashMap<>();
+            error.put("Mensaje", e.getMessage());
+            return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/contacto/{id}")
+    public ResponseEntity delete(@PathVariable Integer id){
+        try {
+            Contacto retorno = Contacto.getContacto(id);
+            Contacto.deleteContacto(retorno);
+
+            return new ResponseEntity(retorno, HttpStatus.OK);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
             error.put("Mensaje", e.getMessage());
             return new ResponseEntity(error, HttpStatus.INTERNAL_SERVER_ERROR);
         }

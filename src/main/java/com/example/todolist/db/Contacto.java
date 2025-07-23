@@ -89,7 +89,8 @@ public class Contacto {
         return crearContacto(contacto.getNombre(), contacto.getCelular(), contacto.getCorreo());
     }
 
-    public static void deleteContacto(Integer id) throws SQLException{
+    public static void deleteContacto(Contacto conn) throws SQLException{
+        Integer id = conn.getId();
         String sql = """
                 delete from contacto where id = ?;
                 """;
